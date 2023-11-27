@@ -1,6 +1,8 @@
 import SwiftUI
 
-struct ContentView: View {
+struct ToggleTycoonHomeView: View {
+      @State private var isInspecting: Bool = false
+
       @State private var showScrollView: Bool = false
       @State private var scrollMaxHeight: CGFloat = 0
 
@@ -91,6 +93,12 @@ struct ContentView: View {
                                                            cooldownOffset: toggle2cooldownOffset)
 
                                           Spacer()
+                                          
+                                          Button {
+                                                isInspecting.toggle()
+                                          } label: {
+                                                Label("Inspect", systemImage: "plus.circle")
+                                          }
 
                                           BuyButtonView(energy: $energy, toggleCost: toggle2Cost, toggleAbility: $toggle2IsAble, toggleCanAfford: $toggle2CanAfford)
                                     }
@@ -115,7 +123,7 @@ struct ContentView: View {
                                                            cooldownOffset: toggle3cooldownOffset)
 
                                           Spacer()
-
+                                          
                                           BuyButtonView(energy: $energy, toggleCost: toggle3Cost, toggleAbility: $toggle3IsAble, toggleCanAfford: $toggle3CanAfford)
                                     }
                               }
@@ -150,6 +158,10 @@ struct ContentView: View {
             .onChange(of: energy) {
                   onEnergyChange()
             }
+            .inspector(isPresented: $isInspecting){
+
+            }
+
       }
 
       func onEnergyChange() {
@@ -187,81 +199,12 @@ struct ContentView_Previews: PreviewProvider {
             @State private var energy: Int = 150
 
             var body: some View {
-                  ContentView(energy: $energy)
+                  ToggleTycoonHomeView(energy: $energy)
             }
       }
 
       static var previews: some View {
             
             ContentViewContainer()
-      }
-}
-
-struct BuyButtonView: View {
-      @Binding var energy: Int
-      let toggleCost: Int
-
-      @Binding var toggleAbility: Bool
-      @Binding var toggleCanAfford: Bool
-
-      var body: some View {
-            Button("$" + String(toggleCost)) {
-                  buySlider(toggleAbility: $toggleAbility, cost: toggleCost)
-            }
-            .disabled(!toggleCanAfford)
-      }
-
-      func buySlider(toggleAbility: Binding<Bool>, cost: Int) {
-            if (energy >= cost) {
-                  energy -= cost
-                  toggleAbility.wrappedValue = true
-            }
-      }
-}
-
-struct CustomToggleView: View {
-      @Binding var energy: Int
-
-      @Binding var isOn: Bool
-      @Binding var toggleTimer: Double
-
-      @Binding var toggleAble: Bool
-
-      let energyAmount: Int?
-
-      let toggleWidth: CGFloat?
-      let toggleHeight: CGFloat?
-
-      let toggleText: String?
-      let activeColor: Color?
-      let duration: Double?
-      let cooldownOffset: Double?
-
-      var body: some View {
-            Toggle(isOn: $isOn) {
-            }
-            .toggleStyle(CustomToggleStyle(toggleTimer: $toggleTimer,
-                                           toggleAble: $toggleAble,
-                                           frameWidth: toggleWidth ?? 64,
-                                           frameHeight: toggleHeight ?? 32,
-                                           activeColor: activeColor ?? .green,
-                                           toggleText: toggleText ?? nil,
-                                           duration: duration ?? 0.4,
-                                           cooldownOffset: cooldownOffset ?? 0.2))
-            .onChange(of: isOn) {
-                  customToggle(toggleState: isOn, energyAmount: energyAmount ?? 1)
-            }
-            .disabled(!toggleAble)
-            .padding()
-      }
-
-      func customToggle(toggleState: Bool, energyAmount: Int) {
-            if(toggleState == true) {
-                  UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-
-                  energy += energyAmount
-            } else {
-                  UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-            }
       }
 }

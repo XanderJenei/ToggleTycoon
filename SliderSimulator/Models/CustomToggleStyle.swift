@@ -53,9 +53,9 @@ struct CustomToggleStyle: ToggleStyle {
       }
 }
 
-struct ContentViews_Previews: PreviewProvider {
+struct CustomToggleStyle_Previews: PreviewProvider {
 
-      struct ContentViewsContainer: View {
+      struct CustomToggleStyleContainer: View {
             @State private var isOn1 = false
             @State private var isOn2 = false
 
@@ -74,8 +74,7 @@ struct ContentViews_Previews: PreviewProvider {
 
 
       static var previews: some View {
-
-            ContentViewsContainer()
+            CustomToggleStyleContainer()
       }
 }
 
