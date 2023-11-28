@@ -1,17 +1,11 @@
 import SwiftUI
 
 struct BuyButtonView: View {
-	@Binding var showBuyButton: Bool
-
-      @Binding var energy: Int
-      @Binding var toggleAbility: Bool
-      @Binding var toggleCanAfford: Bool
+	@Binding var energy: Int
+	@Binding var toggle: CustomToggle
 
 	@State var finalSize: CGFloat = 0
 	@State var opacity: Double = 0.0
-
-	let toggleCost: Int
-
 
 	var body: some View {
 		ZStack{
@@ -21,30 +15,33 @@ struct BuyButtonView: View {
 				.padding(2)
 				.frame(width: finalSize, height: finalSize)
 
-			Button("$" + toggleCost.formatted(.number.notation(.compactName))) {
-				buySlider(toggleAbility: $toggleAbility, cost: toggleCost)
+			Button("$" + toggle.cost.formatted(.number.notation(.compactName))) {
+				buySlider(toggleAbility: $toggle.isAble, cost: toggle.cost)
 
 				despawnButton()
 
 				UIImpactFeedbackGenerator(style: .soft).impactOccurred()
 			}
+			.font(.callout)
+			.fontWeight(.bold)
+			.foregroundStyle(toggle.canAfford ? Color.accentColor : Color.gray)
 			.opacity(opacity)
 		}
-		.disabled(!toggleCanAfford || toggleAbility)
+		.disabled(!toggle.canAfford || toggle.isAble)
 
-		.onChange(of: showBuyButton) {
-			if (showBuyButton) {
+		.onChange(of: toggle.showBuyButton) {
+			if (toggle.showBuyButton) {
 				spawnButton()
 			} else {
 				despawnButton()
 			}
 		}
 		.onChange(of: energy) {
-			if(!toggleAbility){
-				if (energy * 2 >= toggleCost / 2) {
-					showBuyButton = true
+			if(!toggle.isAble) {
+				if (energy * 2 >= toggle.cost / 2) {
+					toggle.showBuyButton = true
 				} else {
-					showBuyButton = false
+					toggle.showBuyButton = false
 				}
 			}
 		}
@@ -55,7 +52,7 @@ struct BuyButtonView: View {
 			opacity = 1.0
 		}
 		withAnimation(.spring(duration: 1.0, bounce: 0.5)) {
-			finalSize = 12.0 + 16.0 * Double(toggleCost.formatted(.number.notation(.compactName)).count)
+			finalSize = 16.0 + 12.0 * Double(toggle.cost.formatted(.number.notation(.compactName)).count)
 		}
 	}
 
@@ -74,28 +71,4 @@ struct BuyButtonView: View {
                   toggleAbility.wrappedValue = true
             }
       }
-}
-
-
-struct BuyButton_Previews: PreviewProvider {
-
-	struct BuyButtonContainer: View {
-		@State private var energy = 20
-		@State private var ability = false
-		@State private var afford = true
-		@State private var showButton = false
-
-		var body: some View {
-			VStack{
-				BuyButtonView(showBuyButton: $showButton, energy: $energy, toggleAbility: $ability, toggleCanAfford: $afford, toggleCost: 100)
-
-				Toggle("Show Button", isOn: $showButton).labelsHidden()
-			}
-		}
-	}
-
-
-	static var previews: some View {
-		BuyButtonContainer()
-	}
 }

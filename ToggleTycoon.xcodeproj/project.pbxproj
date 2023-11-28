@@ -12,9 +12,10 @@
 		0FA1CB6A2B13F3B100B4A87B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1CB692B13F3B100B4A87B /* Assets.xcassets */; };
 		0FA1CB7A2B142D8A00B4A87B /* CustomToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CB792B142D8A00B4A87B /* CustomToggleStyle.swift */; };
 		0FA1CB7F2B14EC0B00B4A87B /* ToggleTycoonIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA1CB7E2B14EC0B00B4A87B /* ToggleTycoonIcon.png */; };
-		0FA1CB832B151FED00B4A87B /* InspectToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CB822B151FED00B4A87B /* InspectToggleStyle.swift */; };
 		0FA1CB852B152B3800B4A87B /* BuyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CB842B152B3800B4A87B /* BuyButtonView.swift */; };
 		0FA1CB872B152B8100B4A87B /* CustomToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CB862B152B8100B4A87B /* CustomToggleView.swift */; };
+		0FA1D9C62B15B0F80015ECBB /* InspectToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1D9C52B15B0F80015ECBB /* InspectToggleView.swift */; };
+		0FDE8ED82B15C9E600B27974 /* ToggleInspectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE8ED72B15C9E600B27974 /* ToggleInspectors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,9 +25,10 @@
 		0FA1CB692B13F3B100B4A87B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0FA1CB792B142D8A00B4A87B /* CustomToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleStyle.swift; sourceTree = "<group>"; };
 		0FA1CB7E2B14EC0B00B4A87B /* ToggleTycoonIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleTycoonIcon.png; sourceTree = "<group>"; };
-		0FA1CB822B151FED00B4A87B /* InspectToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectToggleStyle.swift; sourceTree = "<group>"; };
 		0FA1CB842B152B3800B4A87B /* BuyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyButtonView.swift; sourceTree = "<group>"; };
 		0FA1CB862B152B8100B4A87B /* CustomToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleView.swift; sourceTree = "<group>"; };
+		0FA1D9C52B15B0F80015ECBB /* InspectToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectToggleView.swift; sourceTree = "<group>"; };
+		0FDE8ED72B15C9E600B27974 /* ToggleInspectors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleInspectors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				0FA1CB792B142D8A00B4A87B /* CustomToggleStyle.swift */,
-				0FA1CB822B151FED00B4A87B /* InspectToggleStyle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -82,10 +83,20 @@
 		0FA1CB742B13F58200B4A87B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0FDE8ED62B15C9B800B27974 /* Inspectors */,
 				0FA1CB842B152B3800B4A87B /* BuyButtonView.swift */,
 				0FA1CB862B152B8100B4A87B /* CustomToggleView.swift */,
+				0FA1D9C52B15B0F80015ECBB /* InspectToggleView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		0FDE8ED62B15C9B800B27974 /* Inspectors */ = {
+			isa = PBXGroup;
+			children = (
+				0FDE8ED72B15C9E600B27974 /* ToggleInspectors.swift */,
+			);
+			path = Inspectors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,12 +170,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FDE8ED82B15C9E600B27974 /* ToggleInspectors.swift in Sources */,
 				0FA1CB682B13F3AF00B4A87B /* ToggleTycoonHomeView.swift in Sources */,
+				0FA1D9C62B15B0F80015ECBB /* InspectToggleView.swift in Sources */,
 				0FA1CB7A2B142D8A00B4A87B /* CustomToggleStyle.swift in Sources */,
 				0FA1CB852B152B3800B4A87B /* BuyButtonView.swift in Sources */,
 				0FA1CB872B152B8100B4A87B /* CustomToggleView.swift in Sources */,
 				0FA1CB662B13F3AF00B4A87B /* ToggleTycoonApp.swift in Sources */,
-				0FA1CB832B151FED00B4A87B /* InspectToggleStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,34 +53,3 @@ struct CustomToggleStyle: ToggleStyle {
             .opacity(toggleAble ? 1.0 : 0.4)
       }
 }
-
-struct CustomToggleStyle_Previews: PreviewProvider {
-
-      struct CustomToggleStyleContainer: View {
-		@State private var isOn = false
-
-            @State private var isOn1 = false
-            @State private var isOn2 = false
-
-            @State private var toggleTimer1 = 0.0
-            @State private var toggleTimer2 = 0.0
-
-            var body: some View {
-                  VStack{
-				Toggle(isOn: $isOn) {
-
-				}.labelsHidden()
-                        Toggle("Switch Me", isOn: $isOn1)
-                              .toggleStyle(CustomToggleStyle(toggleTimer: $toggleTimer1, toggleAble: .constant(true)))
-                        Toggle("Switch Me", isOn: $isOn2)
-                              .toggleStyle(CustomToggleStyle(toggleTimer: $toggleTimer2, toggleAble: .constant(true), frameWidth: 128, activeColor: .mint, toggleText: "$2 per toggle", duration: 1.0))
-                  }
-            }
-      }
-
-
-      static var previews: some View {
-            CustomToggleStyleContainer()
-      }
-}
-
