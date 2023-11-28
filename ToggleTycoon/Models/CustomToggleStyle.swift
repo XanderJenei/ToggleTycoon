@@ -6,7 +6,7 @@ struct CustomToggleStyle: ToggleStyle {
       @Binding var toggleAble: Bool
 
       var frameWidth: CGFloat = 64
-      var frameHeight: CGFloat = 28
+      var frameHeight: CGFloat = 32
 
       var activeColor: Color = .green
       var toggleText: String? = ""
@@ -22,19 +22,20 @@ struct CustomToggleStyle: ToggleStyle {
 
             HStack {
                   RoundedRectangle(cornerRadius: frameHeight / 2)
-                        .fill(configuration.isOn ? activeColor : Color(UIColor.systemFill))
+				.fill(configuration.isOn ? activeColor : Color(UIColor.secondarySystemFill))
                         .overlay {
                               Circle()
                                     .fill(.white)
+						.shadow(color: Color(white: 0.8, opacity: toggleAble ? 1.0 : 0.0), radius: 2, y: 1)
                                     .padding(2)
-                                    .shadow(radius: 1)
+
                                     .frame(width: frameHeight, height: frameHeight)
                                     .offset(x: configuration.isOn ? circleOffset : -circleOffset)
                         }
                         .frame(width: frameWidth, height: frameHeight)
                         .onTapGesture {
                               if(toggleTimer <= 0.0 + cooldownOffset){
-                                    withAnimation(.spring(duration: duration, bounce: 0.25)) {
+                                    withAnimation(.spring(duration: duration, bounce: (0.25 - duration / 10))) {
                                           configuration.isOn.toggle()
                                           toggleTimer = duration / 2
                                     }
@@ -46,16 +47,18 @@ struct CustomToggleStyle: ToggleStyle {
                               }
                         }
                   if(toggleText != nil) {
-                        Text(toggleText ?? "").font(.caption).fontWeight(.thin)
+				Text(toggleText ?? "").font(.callout).fontWeight(.thin).opacity(0.5)
                   }
             }
-            .opacity(toggleAble ? 1.0 : 0.5)
+            .opacity(toggleAble ? 1.0 : 0.4)
       }
 }
 
 struct CustomToggleStyle_Previews: PreviewProvider {
 
       struct CustomToggleStyleContainer: View {
+		@State private var isOn = false
+
             @State private var isOn1 = false
             @State private var isOn2 = false
 
@@ -64,6 +67,9 @@ struct CustomToggleStyle_Previews: PreviewProvider {
 
             var body: some View {
                   VStack{
+				Toggle(isOn: $isOn) {
+
+				}.labelsHidden()
                         Toggle("Switch Me", isOn: $isOn1)
                               .toggleStyle(CustomToggleStyle(toggleTimer: $toggleTimer1, toggleAble: .constant(true)))
                         Toggle("Switch Me", isOn: $isOn2)

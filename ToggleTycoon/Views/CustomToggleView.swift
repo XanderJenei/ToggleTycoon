@@ -18,10 +18,6 @@ struct CustomToggleView: View {
       var duration: Double?
       var cooldownOffset: Double?
 
-      let newGesture = TapGesture().onEnded {
-            print("Gesture on VStack.")
-      }
-
       var body: some View {
             Toggle(isOn: $isOn) {
             }
@@ -37,7 +33,7 @@ struct CustomToggleView: View {
                   customToggle(toggleState: isOn, energyAmount: energyAmount ?? 1)
             }
             .disabled(!toggleAble)
-            .simultaneousGesture(newGesture)
+		.blur(radius: toggleAble ? 0.0 : 2.0)
       }
 
       func customToggle(toggleState: Bool, energyAmount: Int) {
@@ -63,11 +59,19 @@ struct CustomToggle_Previews: PreviewProvider {
             @State private var isOn2 = false
             @State private var toggleTimer2 = 0.0
             @State private var toggleAble2 = true
+		@State private var isOn3 = false
+		@State private var toggleTimer3 = 0.0
+		@State private var toggleAble3 = true
+		@State private var isOn4 = false
+		@State private var toggleTimer4 = 0.0
+		@State private var toggleAble4 = false
 
             var body: some View {
                   VStack{
-                        CustomToggleView(energy: $energy, isOn: $isOn1, toggleTimer: $toggleTimer1, toggleAble: $toggleAble1)
-                        CustomToggleView(energy: $energy, isOn: $isOn2, toggleTimer: $toggleTimer2, toggleAble: $toggleAble2)
+				CustomToggleView(energy: $energy, isOn: $isOn1, toggleTimer: $toggleTimer1, toggleAble: $toggleAble1).padding()
+                        CustomToggleView(energy: $energy, isOn: $isOn2, toggleTimer: $toggleTimer2, toggleAble: $toggleAble2).padding()
+				CustomToggleView(energy: $energy, isOn: $isOn3, toggleTimer: $toggleTimer3, toggleAble: $toggleAble3).padding()
+				CustomToggleView(energy: $energy, isOn: $isOn4, toggleTimer: $toggleTimer4, toggleAble: $toggleAble4).padding()
                   }
             }
       }
