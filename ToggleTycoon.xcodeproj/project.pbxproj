@@ -51,6 +51,7 @@
 		0FA1CB592B13F3AF00B4A87B = {
 			isa = PBXGroup;
 			children = (
+				0FED12702B1A794200B42000 /* Development Images */,
 				0FA1CB7E2B14EC0B00B4A87B /* ToggleTycoonIcon.png */,
 				0FA1CB642B13F3AF00B4A87B /* ToggleTycoon */,
 				0FA1CB632B13F3AF00B4A87B /* Products */,
@@ -106,6 +107,13 @@
 				0FDE8ED72B15C9E600B27974 /* ToggleInspectors.swift */,
 			);
 			path = Inspectors;
+			sourceTree = "<group>";
+		};
+		0FED12702B1A794200B42000 /* Development Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Development Images";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
