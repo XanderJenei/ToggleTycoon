@@ -6,22 +6,22 @@ struct InspectToggleView: View {
 	let index: Int
 
 	var body: some View {
-		Toggle(isOn: $toggles[index].isInspecting) {
+		Button(action: {
+			if(!toggles[index].isInspecting){
+				toggles[index].isInspecting.toggle()
+			}
+		}) {
 			Image(systemName: toggles[index].isInspecting ? "plus.circle.fill" : "plus.circle")
 		}
-		.tint(toggles[index].activeColor)
 		.toggleStyle(.button)
+		.tint(toggles[index].activeColor)
 		.clipShape(Circle())
-		.opacity(toggles[index].isAble ? 1.0 : 0.5)
-		.frame(width: 32, height: 16)
-		.onChange(of: toggles[index].isInspecting) {
-			for i in 0..<toggles.count {
-				if i != index {
-					toggles[i].isInspecting = false
-				}
-			}
-		}
-		.disabled(!toggles[index].isAble)
-		.disabled(!toggles.allSatisfy { !$0.isInspecting || $0 == toggles[index] })
+		.opacity(toggles[index].isAble ? 1.0 : 0.0)
+		.disabled(!toggles[index].isAble || !toggles.allSatisfy { !$0.isInspecting || $0 == toggles[index] })
+		.padding(2)
 	}
+}
+
+#Preview {
+	ToggleTycoonPreviewContainer()
 }

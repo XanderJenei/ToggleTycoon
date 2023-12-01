@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CustomToggleStyle: ToggleStyle {
+	@Environment(\.colorScheme) var colorScheme
 
       @Binding var toggleTimer: Double
       @Binding var toggleAble: Bool
@@ -18,20 +19,27 @@ struct CustomToggleStyle: ToggleStyle {
       func makeBody(configuration: Configuration) -> some View {
             let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
-            let circleOffset = (frameWidth - frameHeight) / 2
+		let offsetX = configuration.isOn ? (frameWidth - frameHeight) / 2 : -(frameWidth - frameHeight) / 2
 
             HStack {
                   RoundedRectangle(cornerRadius: frameHeight / 2)
 				.fill(configuration.isOn ? activeColor : Color(UIColor.secondarySystemFill))
-                        .overlay {
-                              Circle()
-                                    .fill(.white)
-						.shadow(color: Color(white: 0.8, opacity: toggleAble ? 1.0 : 0.0), radius: 2, y: 1)
-                                    .padding(2)
+				.overlay {
+					Circle()
+						.fill(.white)
+						.shadow(color: Color(white: colorScheme == .dark ? 0.7 : 0.3, opacity: toggleAble ? 0.5 : 0.0), radius: 2, y: 1)
+						.padding(2)
+						.frame(width: frameHeight, height: frameHeight)
+						.offset(x: offsetX)
+					if(toggleText != nil) {
+						Text(toggleText ?? "")
+							.font(.callout)
+							.fontWeight(.thin)
+							.opacity(0.5)
+							.offset(x: offsetX)
 
-                                    .frame(width: frameHeight, height: frameHeight)
-                                    .offset(x: configuration.isOn ? circleOffset : -circleOffset)
-                        }
+					}
+				}
                         .frame(width: frameWidth, height: frameHeight)
                         .onTapGesture {
                               if(toggleTimer <= 0.0 + cooldownOffset){
@@ -46,9 +54,6 @@ struct CustomToggleStyle: ToggleStyle {
                                     toggleTimer -= 0.1
                               }
                         }
-                  if(toggleText != nil) {
-				Text(toggleText ?? "").font(.callout).fontWeight(.thin).opacity(0.5)
-                  }
             }
             .opacity(toggleAble ? 1.0 : 0.4)
       }

@@ -5,9 +5,9 @@ struct CustomToggleView: View {
 
 	@Binding var toggle: CustomToggle
 
-      var body: some View {
+	var body: some View {
 		Toggle(isOn: $toggle.isOn) {
-            }
+		}
 		.toggleStyle(CustomToggleStyle(toggleTimer: $toggle.cooldownTimer,
 							 toggleAble: $toggle.isAble,
 							 frameWidth: toggle.width,
@@ -18,17 +18,14 @@ struct CustomToggleView: View {
 							 cooldownOffset: toggle.cooldownOffset))
 		.onChange(of: toggle.isOn) {
 			customToggle(toggleState: toggle.isOn, energyAmount: toggle.energyAmount)
-            }
+		}
 		.disabled(!toggle.isAble)
-      }
+	}
 
-      func customToggle(toggleState: Bool, energyAmount: Int) {
-            if(toggleState == true) {
-                  UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-
-                  energy += energyAmount
-            } else {
-                  UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-            }
-      }
+	func customToggle(toggleState: Bool, energyAmount: Int) {
+		if(toggleState == true) {
+			energy += energyAmount
+		}
+		UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+	}
 }

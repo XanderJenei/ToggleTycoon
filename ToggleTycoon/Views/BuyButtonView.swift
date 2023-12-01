@@ -28,6 +28,7 @@ struct BuyButtonView: View {
 			.opacity(opacity)
 		}
 		.disabled(!toggle.canAfford || toggle.isAble)
+		.padding(2)
 
 		.onChange(of: toggle.showBuyButton) {
 			if (toggle.showBuyButton) {
@@ -48,7 +49,7 @@ struct BuyButtonView: View {
 	}
 
 	func spawnButton() {
-		withAnimation(.easeOut(duration: 2.0)) {
+		withAnimation(.easeIn(duration: 1.0)) {
 			opacity = 1.0
 		}
 		withAnimation(.spring(duration: 1.0, bounce: 0.5)) {
@@ -60,7 +61,7 @@ struct BuyButtonView: View {
 		withAnimation(.easeIn(duration: 0.1)) {
 			opacity = 0.0
 		}
-		withAnimation(.spring(duration: 1.0, bounce: 0.5)) {
+		withAnimation(.spring(duration: 1.0, bounce: 0.25)) {
 			finalSize = 0
 		}
 	}

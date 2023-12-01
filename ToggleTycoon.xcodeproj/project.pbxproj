@@ -15,6 +15,9 @@
 		0FA1CB852B152B3800B4A87B /* BuyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CB842B152B3800B4A87B /* BuyButtonView.swift */; };
 		0FA1CB872B152B8100B4A87B /* CustomToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CB862B152B8100B4A87B /* CustomToggleView.swift */; };
 		0FA1D9C62B15B0F80015ECBB /* InspectToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1D9C52B15B0F80015ECBB /* InspectToggleView.swift */; };
+		0FA7AC3C2B1678A4009F3757 /* BuyUpgradeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7AC3B2B1678A4009F3757 /* BuyUpgradeButtonView.swift */; };
+		0FA7AC3E2B167A46009F3757 /* CustomUpgradeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7AC3D2B167A46009F3757 /* CustomUpgradeToggleView.swift */; };
+		0FA7AC402B167A6C009F3757 /* CustomUpgradeToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7AC3F2B167A6C009F3757 /* CustomUpgradeToggleStyle.swift */; };
 		0FDE8ED82B15C9E600B27974 /* ToggleInspectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE8ED72B15C9E600B27974 /* ToggleInspectors.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +31,9 @@
 		0FA1CB842B152B3800B4A87B /* BuyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyButtonView.swift; sourceTree = "<group>"; };
 		0FA1CB862B152B8100B4A87B /* CustomToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToggleView.swift; sourceTree = "<group>"; };
 		0FA1D9C52B15B0F80015ECBB /* InspectToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectToggleView.swift; sourceTree = "<group>"; };
+		0FA7AC3B2B1678A4009F3757 /* BuyUpgradeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyUpgradeButtonView.swift; sourceTree = "<group>"; };
+		0FA7AC3D2B167A46009F3757 /* CustomUpgradeToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUpgradeToggleView.swift; sourceTree = "<group>"; };
+		0FA7AC3F2B167A6C009F3757 /* CustomUpgradeToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUpgradeToggleStyle.swift; sourceTree = "<group>"; };
 		0FDE8ED72B15C9E600B27974 /* ToggleInspectors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleInspectors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				0FA1CB792B142D8A00B4A87B /* CustomToggleStyle.swift */,
+				0FA7AC3F2B167A6C009F3757 /* CustomUpgradeToggleStyle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -87,6 +94,8 @@
 				0FA1CB842B152B3800B4A87B /* BuyButtonView.swift */,
 				0FA1CB862B152B8100B4A87B /* CustomToggleView.swift */,
 				0FA1D9C52B15B0F80015ECBB /* InspectToggleView.swift */,
+				0FA7AC3B2B1678A4009F3757 /* BuyUpgradeButtonView.swift */,
+				0FA7AC3D2B167A46009F3757 /* CustomUpgradeToggleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,9 +183,12 @@
 				0FA1CB682B13F3AF00B4A87B /* ToggleTycoonHomeView.swift in Sources */,
 				0FA1D9C62B15B0F80015ECBB /* InspectToggleView.swift in Sources */,
 				0FA1CB7A2B142D8A00B4A87B /* CustomToggleStyle.swift in Sources */,
+				0FA7AC3C2B1678A4009F3757 /* BuyUpgradeButtonView.swift in Sources */,
 				0FA1CB852B152B3800B4A87B /* BuyButtonView.swift in Sources */,
 				0FA1CB872B152B8100B4A87B /* CustomToggleView.swift in Sources */,
+				0FA7AC3E2B167A46009F3757 /* CustomUpgradeToggleView.swift in Sources */,
 				0FA1CB662B13F3AF00B4A87B /* ToggleTycoonApp.swift in Sources */,
+				0FA7AC402B167A6C009F3757 /* CustomUpgradeToggleStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
