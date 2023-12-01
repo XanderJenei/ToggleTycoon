@@ -1,6 +1,8 @@
 import SwiftUI
 
-struct Toggle1Inspector: View {
+struct ToggleInspector: View {
+	@Binding var energy: Int
+	@Binding var toggle: CustomToggle
 
 	// Auto Toggle Off
 	// Toggle off cooldown upgrades
@@ -8,6 +10,16 @@ struct Toggle1Inspector: View {
 	// Toggle on cooldown upgrades
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+	    VStack {
+		    HStack{
+			    CustomUpgradeToggleView(upgrade: $toggle.upgradeAutoOff, upgradeAble: $toggle.upgradeAutoOffAble)
+			    Text("Auto Off").font(.callout).fontWeight(.thin).opacity(toggle.upgradeAutoOffAble ? 0.4 : 0.2)
+			    Spacer()
+			    BuyUpgradeButtonView(energy: $energy, upgradeAble: $toggle.upgradeAutoOffAble, upgradeCanAfford: $toggle.upgradeAutoOffCanAfford, upgradeCost: toggle.upgradeAutoOffCost)
+		    }
+		    .padding(6)
+		    Spacer()
+	    }
+	    .presentationDetents([.height(180)])
     }
 }

@@ -31,7 +31,6 @@ struct CustomToggle: Identifiable, Equatable {
 	var upgradeAutoOff: Bool = false
 	var upgradeAutoOffAble: Bool = false
 	var upgradeAutoOffCanAfford: Bool = false
-	var upgradeAutoOffShowBuyButton: Bool = false
 
 
 	//Constants
@@ -93,7 +92,37 @@ struct ToggleTycoonApp: App {
 				 height: 36,
 				 activeColor: .orange,
 				 duration: 0.3,
-				 cooldownOffset: 0.3)
+				 cooldownOffset: 0.3),
+
+		//5
+		CustomToggle(cost: 2500,
+				 energyAmount: 24,
+				 text: "$24",
+				 width: 112,
+				 height: 32,
+				 activeColor: .purple,
+				 duration: 3.0,
+				 cooldownOffset: 0.2),
+
+		//6
+		CustomToggle(cost: 5000,
+				 energyAmount: 15,
+				 text: "$10",
+				 width: 96,
+				 height: 29,
+				 activeColor: .yellow,
+				 duration: 1.5,
+				 cooldownOffset: 0.2),
+
+		//7
+		CustomToggle(cost: 10000,
+				 energyAmount: 50,
+				 text: "$50",
+				 width: 250,
+				 height: 44,
+				 activeColor: .red,
+				 duration: 4.3,
+				 cooldownOffset: 0.5)
 	]
 
       var body: some Scene {

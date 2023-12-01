@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct BuyButtonView: View {
+	@Environment(\.colorScheme) var colorScheme
+
 	@Binding var energy: Int
 	@Binding var toggle: CustomToggle
 
@@ -24,7 +26,7 @@ struct BuyButtonView: View {
 			}
 			.font(.callout)
 			.fontWeight(.bold)
-			.foregroundStyle(toggle.canAfford ? Color.accentColor : Color.gray)
+			.foregroundStyle(toggle.canAfford ? Color.accentColor : Color(white: colorScheme == .dark ? 0.25 : 0.5))
 			.opacity(opacity)
 		}
 		.disabled(!toggle.canAfford || toggle.isAble)

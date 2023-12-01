@@ -2,9 +2,9 @@ import SwiftUI
 
 struct CustomToggleView: View {
 	@Binding var energy: Int
-
+	
 	@Binding var toggle: CustomToggle
-
+	
 	var body: some View {
 		Toggle(isOn: $toggle.isOn) {
 		}
@@ -21,7 +21,7 @@ struct CustomToggleView: View {
 		}
 		.disabled(!toggle.isAble)
 	}
-
+	
 	func customToggle(toggleState: Bool, energyAmount: Int) {
 		if(toggleState == true) {
 			energy += energyAmount

@@ -16,12 +16,26 @@ struct ToggleTycoonHomeView: View {
 
 	var body: some View {
 		VStack (){
+			//Button("Free Money") { energy += 10 }
 
+			VStack {
+				Spacer()
 
-			Button("Free Money") { energy += 1 }
-
-			VStack {Spacer()}
+				#if DEBUG
+				HStack{
+					Spacer()
+					Text("                           ").font(.title)
+					Spacer()
+				}
+				Spacer()
+				#endif
+			}
 				.frame(maxHeight: showScrollView ? .infinity : reverseScrollMaxHeight)
+				.onTapGesture {
+					energy += 100
+				}
+
+
 
 			VStack {
 				Text("$" + String(energy))
@@ -46,30 +60,38 @@ struct ToggleTycoonHomeView: View {
 			VStack {Spacer()}
 			.frame(maxHeight: reverseScrollMaxHeight)
 
+
 			ScrollView {
 				VStack {
-					ForEach (toggles.indices, id: \.self) { index in
-						ZStack {
-							Rectangle().fill(toggles[index].activeColor)
-								.opacity(toggles[index].isOn ? 0.1 : 0)
-							HStack {
-								InspectToggleView(toggles: $toggles, index: index)
-								
-								Spacer()
-								CustomToggleView(energy: $energy, toggle: $toggles[index])
-								Spacer()
-								
-								BuyButtonView(energy: $energy, toggle: $toggles[index])
+					//List {
+						ForEach (toggles.indices, id: \.self) { index in
+							ZStack {
+								Rectangle().fill(toggles[index].activeColor)
+									.opacity(toggles[index].isOn ? 0.1 : 0)
+								HStack {
+									InspectToggleView(toggles: $toggles, index: index)
+
+									Spacer()
+									CustomToggleView(energy: $energy, toggle: $toggles[index])
+									Spacer()
+
+									BuyButtonView(energy: $energy, toggle: $toggles[index])
+								}
+
+								.padding(6)
 							}
-							
-							.padding(6)
-						}
+						//}
+						//.onMove(perform: move)
+
 					}
 				}
+
 			}
 			.frame(maxWidth: .infinity, minHeight: scrollMaxHeight / 2, maxHeight: scrollMaxHeight, alignment: .top)
 			.background(Material.ultraThin)
+
 			.opacity(showScrollView ? 1.0 : 0.0)
+
 		}
 		.fontDesign(.rounded)
 		.onChange(of: energy) {
@@ -78,38 +100,26 @@ struct ToggleTycoonHomeView: View {
 			print($toggles[0].upgradeAutoOffCanAfford)
 		}
 		.inspector(isPresented: $toggles[0].isInspecting) {
-			VStack {
-				HStack{
-					CustomUpgradeToggleView(upgrade: $toggles[0].upgradeAutoOff, upgradeAble: $toggles[0].upgradeAutoOffAble)
-					Text("Auto Off").font(.callout).fontWeight(.thin).opacity(toggles[0].upgradeAutoOffAble ? 0.4 : 0.2)
-					Spacer()
-					BuyUpgradeButtonView(energy: $energy, upgradeAble: $toggles[0].upgradeAutoOffAble, upgradeCanAfford: $toggles[0].upgradeAutoOffCanAfford, upgradeShowBuyButton: $toggles[0].upgradeAutoOffShowBuyButton, upgradeCost: toggles[0].upgradeAutoOffCost)
-				}
-				.padding(6)
-				Spacer()
-			}
-			.presentationDetents([.height(180)])
+			ToggleInspector(energy: $energy, toggle: $toggles[0])
 		}
 
 		.inspector(isPresented: $toggles[1].isInspecting) {
-			Text("1")
-
+			ToggleInspector(energy: $energy, toggle: $toggles[1])
 		}
 		.inspector(isPresented: $toggles[2].isInspecting) {
-			Text("2")
-
+			ToggleInspector(energy: $energy, toggle: $toggles[2])
 		}
 		.inspector(isPresented: $toggles[3].isInspecting) {
-			Text("3")
-
+			ToggleInspector(energy: $energy, toggle: $toggles[3])
 		}
 		.inspector(isPresented: $toggles[4].isInspecting) {
-			Text("4")
-
+			ToggleInspector(energy: $energy, toggle: $toggles[4])
 		}
 	}
+	func move(from source: IndexSet, destination: Int) {
+		toggles.move(fromOffsets: source, toOffset: destination)
+	}
 
-	
       func onEnergyChange() {
 		for index in toggles.indices {
 			toggles[index].canAfford = energy >= toggles[index].cost

@@ -19,7 +19,7 @@ struct CustomUpgradeToggleStyle: ToggleStyle {
 
 		HStack {
 			RoundedRectangle(cornerRadius: frameHeight / 2)
-				.fill(configuration.isOn ? activeColor : Color(UIColor.secondarySystemFill))
+				.fill(configuration.isOn ? activeColor : Color(white: colorScheme == .dark ? 0.2 : 0.8, opacity: upgradeAble ? 0.5 : 1.0))
 				.overlay {
 					Circle()
 						.fill(.white)

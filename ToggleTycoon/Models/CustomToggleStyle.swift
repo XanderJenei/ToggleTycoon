@@ -20,10 +20,12 @@ struct CustomToggleStyle: ToggleStyle {
             let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
 		let offsetX = configuration.isOn ? (frameWidth - frameHeight) / 2 : -(frameWidth - frameHeight) / 2
+		
+		let textSize = frameHeight / 2 - 2
 
             HStack {
-                  RoundedRectangle(cornerRadius: frameHeight / 2)
-				.fill(configuration.isOn ? activeColor : Color(UIColor.secondarySystemFill))
+			RoundedRectangle(cornerRadius: frameHeight / 2 )
+				.fill(configuration.isOn ? activeColor : Color(white: colorScheme == .dark ? 0.2 : 0.8, opacity: toggleAble ? 0.6 : 1.0))
 				.overlay {
 					Circle()
 						.fill(.white)
@@ -33,11 +35,10 @@ struct CustomToggleStyle: ToggleStyle {
 						.offset(x: offsetX)
 					if(toggleText != nil) {
 						Text(toggleText ?? "")
-							.font(.callout)
-							.fontWeight(.thin)
+							.font(.system(size: textSize))
 							.opacity(0.5)
 							.offset(x: offsetX)
-
+							.foregroundStyle(Color(white: 0.5))
 					}
 				}
                         .frame(width: frameWidth, height: frameHeight)
@@ -57,4 +58,8 @@ struct CustomToggleStyle: ToggleStyle {
             }
             .opacity(toggleAble ? 1.0 : 0.4)
       }
+}
+
+#Preview {
+	ToggleTycoonPreviewContainer()
 }

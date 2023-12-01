@@ -1,11 +1,12 @@
 import SwiftUI
 
 struct BuyUpgradeButtonView: View {
+	@Environment(\.colorScheme) var colorScheme
+
 	@Binding var energy: Int
 
 	@Binding var upgradeAble: Bool
 	@Binding var upgradeCanAfford: Bool
-	@Binding var upgradeShowBuyButton: Bool
 
 	var upgradeCost: Int
 
@@ -19,55 +20,37 @@ struct BuyUpgradeButtonView: View {
 				.shadow(color: Color(white: 0.8, opacity: 1.0), radius: 2, y: 1)
 				.padding(2)
 				.frame(width: finalSize, height: finalSize)
-
+			
 			Button("$" + upgradeCost.formatted(.number.notation(.compactName))) {
 				if (energy >= upgradeCost) {
 					energy -= upgradeCost
 					$upgradeAble.wrappedValue = true
 				}
 				despawnButton()
-
+				
 				UIImpactFeedbackGenerator(style: .soft).impactOccurred()
 			}
 			.font(.callout)
 			.fontWeight(.bold)
-			.foregroundStyle(upgradeCanAfford ? Color.accentColor : Color.gray)
+			.foregroundStyle(upgradeCanAfford ? Color.accentColor : Color(white: colorScheme == .dark ? 0.25 : 0.5))
 			.opacity(opacity)
 		}
 		.disabled(!upgradeCanAfford || upgradeAble)
 		.padding(2)
-
 		.onChange(of: energy) {
 			if(!upgradeAble) {
-				if (energy * 2 >= upgradeCost / 2) {
-					upgradeShowBuyButton = true
-				} else {
-					upgradeShowBuyButton = false
-				}
-			} else {
-				upgradeShowBuyButton = false
-			}
-
-			if (upgradeShowBuyButton) {
 				spawnButton()
-			} else {
+			}
+			else {
 				despawnButton()
 			}
 		}
-		.onAppear() {
+		.onAppear(){
 			if(!upgradeAble) {
-				if (energy * 2 >= upgradeCost / 2) {
-					upgradeShowBuyButton = true
-
-				} else {
-					upgradeShowBuyButton = false
-				}
-
-				if (upgradeShowBuyButton) {
-					spawnButton()
-				} else {
-					despawnButton()
-				}
+				spawnButton()
+			}
+			else {
+				despawnButton()
 			}
 		}
 	}
@@ -76,7 +59,7 @@ struct BuyUpgradeButtonView: View {
 		withAnimation(.easeOut(duration: 2.0)) {
 			opacity = 1.0
 		}
-		withAnimation(.spring(duration: 1.0, bounce: 0.5)) {
+		withAnimation(.spring(duration: 1.0, bounce: 0.4)) {
 			finalSize = 16.0 + 12.0 * Double(upgradeCost.formatted(.number.notation(.compactName)).count)
 		}
 	}
