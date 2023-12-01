@@ -2,6 +2,9 @@
 
 An incremental game using SwiftUI - based around iOS's **satisfying** toggle. Toggling earns you money which you can use to purchase more toggles and upgrades for your toggles. 
 
+<br>
+<br>
+
 Start Scene - Dark Mode
 <br>
 <img src="/images/preview1.PNG" alt="preview" width="200"/>
