@@ -3,8 +3,16 @@
 An incremental game using SwiftUI - based around iOS's **satisfying** toggle.
 
 Start Scene - Dark Mode
-<img src="/images/preview1.PNGg" alt="drawing" width="200"/>
-[Home Scene Without Any Toggles - Light Mode](/images/preview2.PNG =200x)
-[Home Scene Purchased 6 Toggles - Light Mode](/images/preview3.PNG =200x)
-[Home Scene Can Afford Next Toggle - Dark Mode](/images/preview4.PNG =200x)
-[Home Scene Upgrade Menu Can Afford - Dark Mode](/images/preview5.PNG =200x)
+<img src="/images/preview1.PNG" alt="preview" width="200"/>
+
+Home Scene Without Any Toggles - Light Mode
+<img src="/images/preview2.PNG" alt="preview" width="200"/>
+
+Home Scene Purchased 6 Toggles - Light Mode
+<img src="/images/preview3.PNG" alt="preview" width="200"/>
+
+Home Scene Can Afford Next Toggle - Dark Mode
+<img src="/images/preview4.PNG" alt="preview" width="200"/>
+
+Home Scene Upgrade Menu Can Afford - Dark Mode
+<img src="/images/preview5.PNG" alt="preview" width="200"/>
