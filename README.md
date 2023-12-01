@@ -1,6 +1,6 @@
 # ToggleTycoon
 
-An incremental game using SwiftUI - based around iOS's **satisfying** toggle.
+An incremental game using SwiftUI - based around iOS's **satisfying** toggle. Toggling earns you money which you can use to purchase more toggles and upgrades for your toggles. 
 
 Start Scene - Dark Mode
 <br>
